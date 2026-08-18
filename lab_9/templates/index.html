@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Список прочитанных книг</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #f2f2f2;
+            font-family: Arial;
+        }
+
+        header {
+            background: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 600px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input {
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .book {
+            background: #eeeeee;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .clear {
+            background: red;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<header>
+    <h1>Список прочитанных книг</h1>
+</header>
+
+<div class="container">
+
+    <form action="/add" method="post">
+
+        <input
+            type="text"
+            name="author"
+            placeholder="Автор"
+            required>
+
+        <input
+            type="text"
+            name="title"
+            placeholder="Название книги"
+            required>
+
+        <button type="submit">
+            Добавить
+        </button>
+
+    </form>
+
+    <h2>Книги</h2>
+
+    {% for book in books %}
+        <div class="book">
+            {{ book.author }} — {{ book.title }}
+        </div>
+    {% else %}
+        <p>Список пуст.</p>
+    {% endfor %}
+
+    <form action="/clear" method="post">
+        <button class="clear" type="submit">
+            Clear
+        </button>
+    </form>
+
+</div>
+
+</body>
+</html>
